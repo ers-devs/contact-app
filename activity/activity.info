@@ -1,0 +1,9 @@
+[Activity]
+name = Quiz
+activity_version = 1
+license = GPLv3
+bundle_id = nl.vu.QuizActivity
+exec = sugar-activity Activity.QuizActivity
+icon = activity-icon
+show_launcher = yes
+summary = a simple quiz game
