@@ -18,19 +18,25 @@ class Model(object):
 		# Create an instance of ERS
 		self._ers = ERSLocal(reset_database=False)
 		
-		# Generate a resource name for the owner profile
-		entity_name = 'urn:ers:app:Contact:' + self._ers.get_machine_uuid()
-		
 		# Create the local profile ?
+		entity_name = self.get_own_contact_name()
 		if not self._ers.contains_entity(entity_name):
 			entity = self._ers.create_entity(entity_name)
 			entity.add_property("rdf:type", "foaf:Person")
 			entity.add_property("foaf:name", getpass.getuser())
 			self._ers.persist_entity(entity)
-			
+	
+	def get_own_contact_name(self):
+		'''
+		Get the identifier of the profile for the user of the app
+		'''
+		# Compose a resource name for the owner profile
+		entity_name = 'urn:ers:app:Contact:' + self._ers.get_machine_uuid() + ":" + getpass.getuser()
+		return entity_name
+	
 	def get_contacts(self):
 		'''
-		Get the list of visible contacts
+		Get a list of contacts from the reachable peers
 		'''
 		# Issue a search with ERS
 		list = self._ers.search("rdf:type", "foaf:Person")
