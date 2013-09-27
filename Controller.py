@@ -22,6 +22,7 @@ class Controller(object):
 		# Connect the signals
 		contact_list_obj.connect("cursor-changed", self._contact_selected_cb)
 		button_newprop.connect("clicked", self._new_prop_clicked_cb)
+		self._view.get_object('button_keep').connect("clicked", self._keep_clicked_cb)
 		
 		# Add a timeout to update contacts and force first call
 		self._previous_contact_list = None
@@ -44,6 +45,9 @@ class Controller(object):
 		
 		# Refresh the display of the description
 		self.refresh_entity_description()
+		
+		# Refresh the activation of the buttons
+		self.refresh_toolbar_buttons()
 			
 	def _new_prop_clicked_cb(self, obj):
 		'''
@@ -94,6 +98,13 @@ class Controller(object):
 				contacts_list.append(row=[contact])
 		return True
 	
+	def _keep_clicked_cb(self, obj):
+		'''
+		Called then the keep button is pressed
+		'''
+		self._model.cache_entity(self._selected_entity_name)
+		self.refresh_toolbar_buttons()
+		
 	def refresh_entity_description(self):
 		'''
 		Display all the properties of an entity in a grid
@@ -139,3 +150,19 @@ class Controller(object):
 		# Show the content of the new grid
 		grid_obj.show_all()
 		
+	def refresh_toolbar_buttons(self):
+		'''
+		Update the status of the buttons in the toolbar depending on the contact selected
+		'''
+		# Keep button is enabled by default...
+		keep_button_obj = self._view.get_object('button_keep')
+		keep_button_obj.set_sensitive(True)
+		
+		# disabled for the owner profile
+		if self._selected_entity_name == self._model.get_own_contact_name():
+			keep_button_obj.set_sensitive(False)
+			
+		# and disabled for contacts that are already in cache
+		if self._model.is_cached(self._selected_entity_name):
+			keep_button_obj.set_sensitive(False)
+					

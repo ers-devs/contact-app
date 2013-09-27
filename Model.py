@@ -16,7 +16,7 @@ class Model(object):
 		'''
 		
 		# Create an instance of ERS
-		self._ers = ERSLocal(reset_database=False)
+		self._ers = ERSLocal(reset_database=True)
 		
 		# Create the local profile ?
 		entity_name = self.get_own_contact_name()
@@ -57,6 +57,16 @@ class Model(object):
 		# Return it
 		return description
 	
+	def is_cached(self, entity_name):
+		'''
+		Check if this entity is cached in ERS
+		'''
+		# Return true if the entity is in the cache
+		return self._ers.is_cached(entity_name)
+	
+	def cache_entity(self, entity_name):
+		self._ers.cache_entity(self._ers.get_entity(entity_name))
+		
 	def add_property(self, entity_name, property, value):
 		'''
 		Complete the description of an entity with a new property/value
