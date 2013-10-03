@@ -1,9 +1,9 @@
 [Activity]
-name = Quiz
+name = Contact
 activity_version = 1
 license = GPLv3
-bundle_id = nl.vu.QuizActivity
-exec = sugar-activity Activity.QuizActivity
+bundle_id = ers.ContactActivity
+exec = sugar-activity SugarActivity.ContactActivity
 icon = activity-icon
 show_launcher = yes
-summary = a simple quiz game
+summary = a simple address book and contact sharing activity

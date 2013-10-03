@@ -14,7 +14,7 @@ from View import View
 from Controller import Controller
 from Model import Model
 
-class QuizActivity(activity.Activity):
+class ContactActivity(activity.Activity):
 	def __init__(self, handle):
 		'''
 		Initialise the activity
