@@ -16,7 +16,7 @@ class Model(object):
 		'''
 		
 		# Create an instance of ERS
-		self._ers = ERSLocal(reset_database=True)
+		self._ers = ERSLocal()
 		
 		# Create the local profile ?
 		entity_name = self.get_own_contact_name()
