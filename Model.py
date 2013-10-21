@@ -15,7 +15,7 @@ class Model(object):
 		Constructor
 		'''
 		# Create an instance of ERS
-		self._ers = ERSLocal(reset_database=True)
+		self._ers = ERSLocal()
 		
 		# Create the local profile ?
 		entity_name = self.get_own_contact_name()
@@ -52,6 +52,9 @@ class Model(object):
 		
 		# Get the aggregated description
 		description = entity.get_properties()
+
+		# Eliminate duplicates in the aggregated description
+		description = dict([(k, list(set(v))) for (k, v) in description.iteritems()]) 
 		
 		# Return it
 		return description
