@@ -54,6 +54,7 @@ class Model(object):
 		description = entity.get_properties()
 
 		# Eliminate duplicates in the aggregated description
+		# TODO Move this to the entity code
 		description = dict([(k, list(set(v))) for (k, v) in description.iteritems()]) 
 		
 		# Return it
