@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.16.0 on Mon Oct 21 14:35:29 2013 -->
 <interface>
   <!-- interface-requires gtk+ 3.6 -->
   <object class="GtkListStore" id="contacts_list_model">
     <columns>
       <!-- column-name name -->
+      <column type="gchararray"/>
+      <!-- column-name display_name -->
       <column type="gchararray"/>
     </columns>
   </object>
@@ -73,7 +76,7 @@
                         <child>
                           <object class="GtkCellRendererText" id="cellrenderertext2"/>
                           <attributes>
-                            <attribute name="text">0</attribute>
+                            <attribute name="text">1</attribute>
                           </attributes>
                         </child>
                       </object>
@@ -142,7 +145,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">•</property>
-                    <property name="invisible_char_set">True</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

@@ -14,7 +14,6 @@ class Model(object):
 		'''
 		Constructor
 		'''
-		
 		# Create an instance of ERS
 		self._ers = ERSLocal(reset_database=True)
 		
@@ -65,6 +64,9 @@ class Model(object):
 		return self._ers.is_cached(entity_name)
 	
 	def cache_entity(self, entity_name):
+		'''
+		Save an entity to the cache
+		'''
 		self._ers.cache_entity(self._ers.get_entity(entity_name))
 		
 	def add_property(self, entity_name, property, value):

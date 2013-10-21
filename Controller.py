@@ -95,7 +95,13 @@ class Controller(object):
 			contacts_list = obj.get_model()
 			contacts_list.clear()
 			for contact in contacts:
-				contacts_list.append(row=[contact])
+				# By default, show the URN
+				contact_diplay_name = contact
+				# If the contact is ourselves, display "Me"
+				if contact == self._model.get_own_contact_name():
+					contact_diplay_name = 'Me'
+				# Add the entry
+				contacts_list.append(row=[contact, contact_diplay_name])
 		return True
 	
 	def _keep_clicked_cb(self, obj):
