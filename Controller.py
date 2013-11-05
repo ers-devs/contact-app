@@ -37,8 +37,15 @@ class Controller(object):
 		Called when a contact is selected
 		'''
 		# Get the identifier of the entity the user selected
-		selected_row = obj.get_selection().get_selected_rows()[1][0][0]
-		identifier = obj.get_model()[selected_row][0]
+
+		# If this fails, probably contacts have changed,
+		# so we update the list of contacts and exit
+		try:
+			selected_row = obj.get_selection().get_selected_rows()[1][0][0]
+			identifier = obj.get_model()[selected_row][0]
+		except:
+			self._update_contacts_cb(self, obj)
+			return
 		
 		# Get the entity description from the model
 		self._selected_entity_name = identifier
