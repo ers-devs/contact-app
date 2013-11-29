@@ -6,7 +6,7 @@ import sys
 TESTS_PATH = os.path.dirname(os.path.realpath(__file__))
 ERS_PATH = os.path.join(os.path.dirname(TESTS_PATH), 'ers/ers-local')
 sys.path.insert(0, ERS_PATH)
-from ers import ERSLocal
+from ers import ERS
 import getpass
 
 class Model(object):
@@ -15,7 +15,7 @@ class Model(object):
 		Constructor
 		'''
 		# Create an instance of ERS
-		self._ers = ERSLocal()
+		self._ers = ERS()
 		
 		# Create the local profile ?
 		entity_name = self.get_own_contact_name()
