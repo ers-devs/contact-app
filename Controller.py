@@ -44,7 +44,7 @@ class Controller(object):
 			selected_row = obj.get_selection().get_selected_rows()[1][0][0]
 			identifier = obj.get_model()[selected_row][0]
 		except:
-			self._update_contacts_cb(self, obj)
+			self._update_contacts_cb(obj)
 			return
 		
 		# Get the entity description from the model
