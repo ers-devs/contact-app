@@ -37,12 +37,8 @@ class Model(object):
 		'''
 		Get a list of contacts from the reachable peers
 		'''
-		# Issue a search with ERS
-		list = self._ers.search("rdf:type", "foaf:Person")
-		
-		# Return the list
-		return list
-			
+		return self._ers.search("rdf:type", "foaf:Person")			
+
 	def get_entity_description(self, entity_name):
 		'''
 		Get all the available data about the selected entity
