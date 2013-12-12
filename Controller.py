@@ -29,6 +29,9 @@ class Controller(object):
 		self._update_contacts_cb(contact_list_obj)
 		GLib.timeout_add_seconds(2, self._update_contacts_cb, contact_list_obj)
 
+		# FIXME Sometimes contacts get stuck. We just force update every 30sec for now. 
+		GLib.timeout_add_seconds(30, self._force_update_contacts_cb, contact_list_obj)
+
 		# Hack to clean the grid
 		self._grid_objs = []
 		
@@ -110,6 +113,10 @@ class Controller(object):
 				# Add the entry
 				contacts_list.append(row=[contact, contact_diplay_name])
 		return True
+
+	def _force_update_contacts_cb(self, obj):
+		self._previous_contact_list = None
+		self._update_contacts_cb(obj)
 	
 	def _keep_clicked_cb(self, obj):
 		'''
